@@ -31,7 +31,7 @@ export interface ITitle {
   countriesOfOrigin: string[];
   posterImage: IImageDetails;
   allImages: IImageDetails[];
-  boxOffice?: IBoxOfficeDetails;
+  boxOffice: IBoxOfficeDetails;
   productionCompanies: IProductionCompanyDetails[];
   taglines: string[];
   runtime: IRuntimeDetails;

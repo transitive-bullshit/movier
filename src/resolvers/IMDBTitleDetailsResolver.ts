@@ -82,16 +82,16 @@ export class IMDBTitleDetailsResolver implements ITitleDetailsResolver {
     await Promise.all([
       this.getMainPageHTMLData(),
       this.getReleaseInfoPageHTMLData(),
-      this.getFullCreditsPageHTMLData(),
+      // this.getFullCreditsPageHTMLData(),
       this.getRatingsPageHTMLData(),
-      this.getCompanyCreditsPageHTMLData(),
-      this.getTaglinesPageHTMLData(),
-      this.getPosterImagesFirstPageHTMLData(),
-      this.getStillFrameImagesFirstPageHTMLData(),
-      this.getAwardsPageHTMLData(),
+      // this.getCompanyCreditsPageHTMLData(),
+      // this.getTaglinesPageHTMLData(),
+      // this.getPosterImagesFirstPageHTMLData(),
+      // this.getStillFrameImagesFirstPageHTMLData(),
+      // this.getAwardsPageHTMLData(),
       this.getCriticReviewsHTMLData(),
-      this.getQuotesPageHTMLData(),
-      this.getGoofsPageHTMLData(),
+      // this.getQuotesPageHTMLData(),
+      // this.getGoofsPageHTMLData(),
     ]);
 
     return this.generateReturnDetailsData();
@@ -220,21 +220,21 @@ export class IMDBTitleDetailsResolver implements ITitleDetailsResolver {
   }
 
   async generateReturnDetailsData() {
-    const res: ITitle = {
+    const res: Partial<ITitle> = {
       detailsLang: Language.English,
       mainSource: this.mainSourceDetails,
-      allSources: this.allSources,
+      // allSources: this.allSources,
       name: this.name,
       worldWideName: this.worldWideName,
       otherNames: this.allUniqueNames,
       titleYear: this.titleYear,
       genres: this.genres,
-      directors: this.directors,
-      writers: this.writers,
+      // directors: this.directors,
+      // writers: this.writers,
       mainType: this.mainType,
       plot: this.plot,
-      casts: this.casts,
-      producers: this.producers,
+      // casts: this.casts,
+      // producers: this.producers,
       mainRate: this.mainRate,
       allRates: this.allRates,
       allReleaseDates: this.allReleaseDates,
@@ -242,20 +242,20 @@ export class IMDBTitleDetailsResolver implements ITitleDetailsResolver {
       ageCategoryTitle: this.ageCategoryTitle,
       languages: this.languages,
       countriesOfOrigin: this.countriesOfOrigin,
-      posterImage: this.posterImage,
-      allImages: this.allImages,
+      // posterImage: this.posterImage,
+      // allImages: this.allImages,
       boxOffice: this.boxOffice,
-      productionCompanies: this.productionCompanies,
-      taglines: this.taglines,
+      // productionCompanies: this.productionCompanies,
+      // taglines: this.taglines,
       runtime: this.runtime,
       keywords: this.keywords,
-      awards: this.awards,
-      awardsSummary: this.awardsSummary,
-      quotes: this.quotes,
-      goofs: this.goofs,
+      // awards: this.awards,
+      // awardsSummary: this.awardsSummary,
+      // quotes: this.quotes,
+      // goofs: this.goofs,
     };
 
-    return res;
+    return res as ITitle;
   }
 
   get mainSourceDetails(): ISourceDetails {
@@ -649,30 +649,30 @@ export class IMDBTitleDetailsResolver implements ITitleDetailsResolver {
       rate: getRateAndVotesCountFromTd(allGendersTds.eq(1)).rate,
       votesCount: getRateAndVotesCountFromTd(allGendersTds.eq(1)).votesCount,
       rateSource: Source.IMDB,
-      assortedByGender: {
-        allGenders: {
-          allAges: getRateAndVotesCountFromTd(allGendersTds.eq(1)),
-          under18: getRateAndVotesCountFromTd(allGendersTds.eq(2)),
-          between18And29: getRateAndVotesCountFromTd(allGendersTds.eq(3)),
-          between30And44: getRateAndVotesCountFromTd(allGendersTds.eq(4)),
-          over44: getRateAndVotesCountFromTd(allGendersTds.eq(5)),
-        },
-        male: {
-          allAges: getRateAndVotesCountFromTd(maleTds.eq(1)),
-          under18: getRateAndVotesCountFromTd(maleTds.eq(2)),
-          between18And29: getRateAndVotesCountFromTd(maleTds.eq(3)),
-          between30And44: getRateAndVotesCountFromTd(maleTds.eq(4)),
-          over44: getRateAndVotesCountFromTd(maleTds.eq(5)),
-        },
-        female: {
-          allAges: getRateAndVotesCountFromTd(femaleTds.eq(1)),
-          under18: getRateAndVotesCountFromTd(femaleTds.eq(2)),
-          between18And29: getRateAndVotesCountFromTd(femaleTds.eq(3)),
-          between30And44: getRateAndVotesCountFromTd(femaleTds.eq(4)),
-          over44: getRateAndVotesCountFromTd(femaleTds.eq(5)),
-        },
-      },
-      assortedByRate: assortedByRateList,
+      // assortedByGender: {
+      //   allGenders: {
+      //     allAges: getRateAndVotesCountFromTd(allGendersTds.eq(1)),
+      //     under18: getRateAndVotesCountFromTd(allGendersTds.eq(2)),
+      //     between18And29: getRateAndVotesCountFromTd(allGendersTds.eq(3)),
+      //     between30And44: getRateAndVotesCountFromTd(allGendersTds.eq(4)),
+      //     over44: getRateAndVotesCountFromTd(allGendersTds.eq(5)),
+      //   },
+      //   male: {
+      //     allAges: getRateAndVotesCountFromTd(maleTds.eq(1)),
+      //     under18: getRateAndVotesCountFromTd(maleTds.eq(2)),
+      //     between18And29: getRateAndVotesCountFromTd(maleTds.eq(3)),
+      //     between30And44: getRateAndVotesCountFromTd(maleTds.eq(4)),
+      //     over44: getRateAndVotesCountFromTd(maleTds.eq(5)),
+      //   },
+      //   female: {
+      //     allAges: getRateAndVotesCountFromTd(femaleTds.eq(1)),
+      //     under18: getRateAndVotesCountFromTd(femaleTds.eq(2)),
+      //     between18And29: getRateAndVotesCountFromTd(femaleTds.eq(3)),
+      //     between30And44: getRateAndVotesCountFromTd(femaleTds.eq(4)),
+      //     over44: getRateAndVotesCountFromTd(femaleTds.eq(5)),
+      //   },
+      // },
+      // assortedByRate: assortedByRateList,
     });
   }
 
