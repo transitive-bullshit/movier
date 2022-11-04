@@ -37,6 +37,8 @@ export enum TitleMainType {
   Series = "series",
   SeriesEpisode = "seriesEpisode",
   TVSpecial = "tvSpecial",
+  TVMovie = "tvMovie",
+  Video = "video",
 }
 
 export enum Language {

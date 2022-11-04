@@ -498,16 +498,26 @@ export class IMDBTitleDetailsResolver implements ITitleDetailsResolver {
         .text()
         ?.toLowerCase() || "";
 
-    console.log(metaDataBoxText);
-    return cacheDataManager.cacheAndReturnData(
-      metaDataBoxText.includes("episode")
-        ? TitleMainType.SeriesEpisode
-        : metaDataBoxText.includes("series")
-        ? TitleMainType.Series
-        : metaDataBoxText.includes("tv special")
-        ? TitleMainType.TVSpecial
-        : TitleMainType.Movie
-    );
+    const t = metaDataBoxText.includes("episode")
+      ? TitleMainType.SeriesEpisode
+      : metaDataBoxText.includes("series")
+      ? TitleMainType.Series
+      : metaDataBoxText.includes("tv special")
+      ? TitleMainType.TVSpecial
+      : metaDataBoxText.includes("video")
+      ? TitleMainType.Video
+      : metaDataBoxText.includes("tv movie")
+      ? TitleMainType.TVMovie
+      : TitleMainType.Movie;
+
+    if (t === TitleMainType.Movie) {
+      const t2 = metaDataBoxText.replace(/[^a-zA-Z -]*/g, "").trim();
+      if (t2) {
+        console.log("imdb unexpected mainType", metaDataBoxText);
+      }
+    }
+
+    return cacheDataManager.cacheAndReturnData(t);
   }
 
   get plot(): string {
