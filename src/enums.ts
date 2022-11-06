@@ -25,6 +25,7 @@ export enum Genre {
   RealityTV = "realityTv",
   Romance = "romance",
   SciFi = "sciFi",
+  Short = "short",
   Sport = "sport",
   TalkShow = "talkShow",
   Thriller = "thriller",
@@ -37,6 +38,7 @@ export enum TitleMainType {
   Series = "series",
   SeriesEpisode = "seriesEpisode",
   TVSpecial = "tvSpecial",
+  TVShort = "tvShort",
   TVMovie = "tvMovie",
   Video = "video",
 }

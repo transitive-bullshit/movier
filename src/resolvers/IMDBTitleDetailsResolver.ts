@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {
   ITitleGoofItem,
   ITitleQuoteItem,
@@ -498,7 +499,8 @@ export class IMDBTitleDetailsResolver implements ITitleDetailsResolver {
         .text()
         ?.toLowerCase() || "";
 
-    const t = metaDataBoxText.includes("episode")
+    // TODO: also handle short and tvMiniSeries
+    const mainType = metaDataBoxText.includes("episode")
       ? TitleMainType.SeriesEpisode
       : metaDataBoxText.includes("series")
       ? TitleMainType.Series
@@ -508,16 +510,11 @@ export class IMDBTitleDetailsResolver implements ITitleDetailsResolver {
       ? TitleMainType.Video
       : metaDataBoxText.includes("tv movie")
       ? TitleMainType.TVMovie
+      : metaDataBoxText.includes("tv short")
+      ? TitleMainType.TVShort
       : TitleMainType.Movie;
 
-    if (t === TitleMainType.Movie) {
-      const t2 = metaDataBoxText.replace(/[^a-zA-Z -]*/g, "").trim();
-      if (t2) {
-        console.log("imdb unexpected mainType", metaDataBoxText);
-      }
-    }
-
-    return cacheDataManager.cacheAndReturnData(t);
+    return cacheDataManager.cacheAndReturnData(mainType);
   }
 
   get plot(): string {
